@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Controls</title>
+</head>
+<body>
+ 
+    <div id="container">
+
+        <button id="up" class="button" onclick="sendToCar('up')"> UP </button><br>
+        <button id="left" class="button" onclick="sendToCar('left')"> LEFT </button>
+        <button id="right" class="button" onclick="sendToCar('right')"> RIGHT </button><br>
+        <button id="down" class="button" onclick="sendToCar('down')"> DOWN </button>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/statics/jquery.js"></!--> -->
+
+    <script>
+
+        var socket = io.connect('http://localhost:2000');
+
+
+        function sendToCar(command) {
+
+            console.log(command);
+
+            socket.emit('signal incoming', { command : command });
+
+        }
+
+    </script>
+
+
+    <style>
+        body{
+            scroll-behavior: initial;
+        }
+        #container{
+            position: absolute;
+            top: 300px;
+            left: 900px;
+            width: 100px;
+            height: auto;
+            background-color: red;
+        }
+
+        .button{
+            background-color: pink;
+            padding: 20px;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+    </style>
+
+
+
+</body>
+</html>
